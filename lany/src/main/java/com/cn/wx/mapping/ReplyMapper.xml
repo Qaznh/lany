@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.wx.dao.ReplyMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.wx.pojo.Reply" >
+    <id column="reply_id" property="replyId" jdbcType="INTEGER" />
+    <result column="comment_id" property="commentId" jdbcType="INTEGER" />
+    <result column="from_stuid" property="fromStuid" jdbcType="CHAR" />
+    <result column="to_stuid" property="toStuid" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cn.wx.pojo.Reply" extends="BaseResultMap" >
+    <result column="reply_cont" property="replyCont" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    reply_id, comment_id, from_stuid, to_stuid, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    reply_cont
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news_reply
+    where reply_id = #{replyId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByComtId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news_reply
+    where comment_id = #{replyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from news_reply
+    where reply_id = #{replyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.wx.pojo.Reply" >
+    insert into news_reply (reply_id, comment_id, from_stuid, 
+      to_stuid, create_time, reply_cont
+      )
+    values (#{replyId,jdbcType=INTEGER}, #{commentId,jdbcType=INTEGER}, #{fromStuid,jdbcType=CHAR}, 
+      #{toStuid,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{replyCont,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.wx.pojo.Reply" >
+    insert into news_reply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="replyId != null" >
+        reply_id,
+      </if>
+      <if test="commentId != null" >
+        comment_id,
+      </if>
+      <if test="fromStuid != null" >
+        from_stuid,
+      </if>
+      <if test="toStuid != null" >
+        to_stuid,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="replyCont != null" >
+        reply_cont,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="replyId != null" >
+        #{replyId,jdbcType=INTEGER},
+      </if>
+      <if test="commentId != null" >
+        #{commentId,jdbcType=INTEGER},
+      </if>
+      <if test="fromStuid != null" >
+        #{fromStuid,jdbcType=CHAR},
+      </if>
+      <if test="toStuid != null" >
+        #{toStuid,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="replyCont != null" >
+        #{replyCont,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.wx.pojo.Reply" >
+    update news_reply
+    <set >
+      <if test="commentId != null" >
+        comment_id = #{commentId,jdbcType=INTEGER},
+      </if>
+      <if test="fromStuid != null" >
+        from_stuid = #{fromStuid,jdbcType=CHAR},
+      </if>
+      <if test="toStuid != null" >
+        to_stuid = #{toStuid,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="replyCont != null" >
+        reply_cont = #{replyCont,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where reply_id = #{replyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cn.wx.pojo.Reply" >
+    update news_reply
+    set comment_id = #{commentId,jdbcType=INTEGER},
+      from_stuid = #{fromStuid,jdbcType=CHAR},
+      to_stuid = #{toStuid,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      reply_cont = #{replyCont,jdbcType=LONGVARCHAR}
+    where reply_id = #{replyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.wx.pojo.Reply" >
+    update news_reply
+    set comment_id = #{commentId,jdbcType=INTEGER},
+      from_stuid = #{fromStuid,jdbcType=CHAR},
+      to_stuid = #{toStuid,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where reply_id = #{replyId,jdbcType=INTEGER}
+  </update>
+</mapper>

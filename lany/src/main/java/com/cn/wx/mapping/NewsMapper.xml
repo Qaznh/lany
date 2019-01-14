@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.wx.dao.NewsMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.wx.pojo.News" >
+    <id column="news_id" property="newsId" jdbcType="INTEGER" />
+    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
+    <result column="stu_id" property="stuId" jdbcType="CHAR" />
+    <result column="news_img" property="newsImg" jdbcType="VARCHAR" />
+    <result column="comment_num" property="commentNum" jdbcType="INTEGER" />
+    <result column="praise_num" property="praiseNum" jdbcType="INTEGER" />
+    <result column="browse_num" property="browseNum" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="news_img1" property="newsImg1" jdbcType="VARCHAR" />
+    <result column="news_img2" property="newsImg2" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.cn.wx.pojo.News" extends="BaseResultMap" >
+    <result column="news_cont" property="newsCont" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    news_id, keyword, stu_id, news_img, comment_num, praise_num, browse_num, create_time, 
+    news_img1, news_img2
+  </sql>
+  <sql id="Blob_Column_List" >
+    news_cont
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </select>
+    <select id="selectDesc" resultMap="ResultMapWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+    order by news_id DESC limit 1
+  </select>
+   <select id="selectByPageno" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+    order by news_id DESC limit #{start},10
+  </select>
+    <select id="selectByKeyword"  resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news
+    where keyword = #{keyword}
+    order by news_id DESC limit #{start},10
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from news
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.wx.pojo.News" >
+    insert into news (news_id, keyword, stu_id, 
+      news_img, comment_num, praise_num, 
+      browse_num, create_time, news_img1, 
+      news_img2, news_cont)
+    values (#{newsId,jdbcType=INTEGER}, #{keyword,jdbcType=VARCHAR}, #{stuId,jdbcType=CHAR}, 
+      #{newsImg,jdbcType=VARCHAR}, #{commentNum,jdbcType=INTEGER}, #{praiseNum,jdbcType=INTEGER}, 
+      #{browseNum,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{newsImg1,jdbcType=VARCHAR}, 
+      #{newsImg2,jdbcType=VARCHAR}, #{newsCont,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.wx.pojo.News" >
+    insert into news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="newsId != null" >
+        news_id,
+      </if>
+      <if test="keyword != null" >
+        keyword,
+      </if>
+      <if test="stuId != null" >
+        stu_id,
+      </if>
+      <if test="newsImg != null" >
+        news_img,
+      </if>
+      <if test="commentNum != null" >
+        comment_num,
+      </if>
+      <if test="praiseNum != null" >
+        praise_num,
+      </if>
+      <if test="browseNum != null" >
+        browse_num,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="newsImg1 != null" >
+        news_img1,
+      </if>
+      <if test="newsImg2 != null" >
+        news_img2,
+      </if>
+      <if test="newsCont != null" >
+        news_cont,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="newsId != null" >
+        #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="stuId != null" >
+        #{stuId,jdbcType=CHAR},
+      </if>
+      <if test="newsImg != null" >
+        #{newsImg,jdbcType=VARCHAR},
+      </if>
+      <if test="commentNum != null" >
+        #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="praiseNum != null" >
+        #{praiseNum,jdbcType=INTEGER},
+      </if>
+      <if test="browseNum != null" >
+        #{browseNum,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newsImg1 != null" >
+        #{newsImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="newsImg2 != null" >
+        #{newsImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="newsCont != null" >
+        #{newsCont,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.wx.pojo.News" >
+    update news
+    <set >
+      <if test="keyword != null" >
+        keyword = #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="stuId != null" >
+        stu_id = #{stuId,jdbcType=CHAR},
+      </if>
+      <if test="newsImg != null" >
+        news_img = #{newsImg,jdbcType=VARCHAR},
+      </if>
+      <if test="commentNum != null" >
+        comment_num = #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="praiseNum != null" >
+        praise_num = #{praiseNum,jdbcType=INTEGER},
+      </if>
+      <if test="browseNum != null" >
+        browse_num = #{browseNum,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newsImg1 != null" >
+        news_img1 = #{newsImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="newsImg2 != null" >
+        news_img2 = #{newsImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="newsCont != null" >
+        news_cont = #{newsCont,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cn.wx.pojo.News" >
+    update news
+    set keyword = #{keyword,jdbcType=VARCHAR},
+      stu_id = #{stuId,jdbcType=CHAR},
+      news_img = #{newsImg,jdbcType=VARCHAR},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      praise_num = #{praiseNum,jdbcType=INTEGER},
+      browse_num = #{browseNum,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      news_img1 = #{newsImg1,jdbcType=VARCHAR},
+      news_img2 = #{newsImg2,jdbcType=VARCHAR},
+      news_cont = #{newsCont,jdbcType=LONGVARCHAR}
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.wx.pojo.News" >
+    update news
+    set keyword = #{keyword,jdbcType=VARCHAR},
+      stu_id = #{stuId,jdbcType=CHAR},
+      news_img = #{newsImg,jdbcType=VARCHAR},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      praise_num = #{praiseNum,jdbcType=INTEGER},
+      browse_num = #{browseNum,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      news_img1 = #{newsImg1,jdbcType=VARCHAR},
+      news_img2 = #{newsImg2,jdbcType=VARCHAR}
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </update>
+</mapper>

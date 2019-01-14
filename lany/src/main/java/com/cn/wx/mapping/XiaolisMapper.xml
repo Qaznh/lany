@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.wx.dao.XiaolisMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.wx.pojo.Xiaolis" >
+    <id column="xiaoli_id" property="xiaoliId" jdbcType="INTEGER" />
+    <result column="year" property="year" jdbcType="VARCHAR" />
+    <result column="xiaoli_url" property="xiaoliUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    xiaoli_id, year, xiaoli_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from xiaoli
+    where xiaoli_id = #{xiaoliId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from xiaoli
+  </select>
+    <select id="selectCount" resultType="int" parameterType="java.lang.Integer">
+    select
+    count(*) 
+    from xiaoli;
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from xiaoli
+    where xiaoli_id = #{xiaoliId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.wx.pojo.Xiaolis" >
+    insert into xiaoli (xiaoli_id, year, xiaoli_url
+      )
+    values (#{xiaoliId,jdbcType=INTEGER}, #{year,jdbcType=VARCHAR}, #{xiaoliUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.wx.pojo.Xiaolis" >
+    insert into xiaoli
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xiaoliId != null" >
+        xiaoli_id,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="xiaoliUrl != null" >
+        xiaoli_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xiaoliId != null" >
+        #{xiaoliId,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaoliUrl != null" >
+        #{xiaoliUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.wx.pojo.Xiaolis" >
+    update xiaoli
+    <set >
+      <if test="year != null" >
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaoliUrl != null" >
+        xiaoli_url = #{xiaoliUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where xiaoli_id = #{xiaoliId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.wx.pojo.Xiaolis" >
+    update xiaoli
+    set year = #{year,jdbcType=VARCHAR},
+      xiaoli_url = #{xiaoliUrl,jdbcType=VARCHAR}
+    where xiaoli_id = #{xiaoliId,jdbcType=INTEGER}
+  </update>
+</mapper>

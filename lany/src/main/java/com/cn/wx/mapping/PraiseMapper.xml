@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.wx.dao.PraiseMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.wx.pojo.Praise" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="stu_id" property="stuId" jdbcType="CHAR" />
+    <result column="news_id" property="newsId" jdbcType="INTEGER" />
+    <result column="crawl_time" property="crawlTime" jdbcType="TIMESTAMP" />
+    <result column="flaggood" property="flaggood" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, stu_id, news_id, crawl_time, flaggood
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from news_praise
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectBySiNi" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from news_praise
+    where stu_id = #{stuid} and news_id = #{newsid}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from news_praise
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteBySiNi"  >
+    delete from news_praise
+    where stu_id = #{stuid} and news_id = #{newsid}
+  </delete>
+  <insert id="insert" parameterType="com.cn.wx.pojo.Praise" >
+    insert into news_praise (id, stu_id, news_id, 
+      crawl_time, flaggood)
+    values (#{id,jdbcType=INTEGER}, #{stuId,jdbcType=CHAR}, #{newsId,jdbcType=INTEGER}, 
+      #{crawlTime,jdbcType=TIMESTAMP}, #{flaggood,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.wx.pojo.Praise" >
+    insert into news_praise
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stuId != null" >
+        stu_id,
+      </if>
+      <if test="newsId != null" >
+        news_id,
+      </if>
+      <if test="crawlTime != null" >
+        crawl_time,
+      </if>
+      <if test="flaggood != null" >
+        flaggood,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="stuId != null" >
+        #{stuId,jdbcType=CHAR},
+      </if>
+      <if test="newsId != null" >
+        #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="crawlTime != null" >
+        #{crawlTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flaggood != null" >
+        #{flaggood,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.wx.pojo.Praise" >
+    update news_praise
+    <set >
+      <if test="stuId != null" >
+        stu_id = #{stuId,jdbcType=CHAR},
+      </if>
+      <if test="newsId != null" >
+        news_id = #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="crawlTime != null" >
+        crawl_time = #{crawlTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flaggood != null" >
+        flaggood = #{flaggood,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.wx.pojo.Praise" >
+    update news_praise
+    set stu_id = #{stuId,jdbcType=CHAR},
+      news_id = #{newsId,jdbcType=INTEGER},
+      crawl_time = #{crawlTime,jdbcType=TIMESTAMP},
+      flaggood = #{flaggood,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

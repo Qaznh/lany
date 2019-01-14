@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.wx.dao.GradeMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.wx.pojo.Grade" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <id column="term" property="term" jdbcType="INTEGER" />
+    <result column="grade_url" property="gradeUrl" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, term, grade_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.cn.wx.pojo.GradeKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from grade
+    where id = #{id,jdbcType=CHAR}
+      and term = #{term,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.cn.wx.pojo.GradeKey" >
+    delete from grade
+    where id = #{id,jdbcType=CHAR}
+      and term = #{term,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.wx.pojo.Grade" >
+    insert into grade (id, term, grade_url)
+    values (#{id,jdbcType=CHAR}, #{term,jdbcType=INTEGER}, #{gradeUrl,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.wx.pojo.Grade" >
+    insert into grade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="term != null" >
+        term,
+      </if>
+      <if test="gradeUrl != null" >
+        grade_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="term != null" >
+        #{term,jdbcType=INTEGER},
+      </if>
+      <if test="gradeUrl != null" >
+        #{gradeUrl,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.wx.pojo.Grade" >
+    update grade
+    <set >
+      <if test="gradeUrl != null" >
+        grade_url = #{gradeUrl,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+      and term = #{term,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.wx.pojo.Grade" >
+    update grade
+    set grade_url = #{gradeUrl,jdbcType=CHAR}
+    where id = #{id,jdbcType=CHAR}
+      and term = #{term,jdbcType=INTEGER}
+  </update>
+</mapper>
