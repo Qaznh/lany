@@ -68,8 +68,8 @@ public class TestMyBatis {
     @Test  
     public void test1() {  
         
-    /*
-        List<News> nws= newsService.getNewsByPage(0);
+    
+        List<News> nws= newsService.getNewsByStuid("1614080903225", 0);
     	
     	List<JSONObject> ns= new ArrayList<JSONObject>();
     	for(int i=0;i<nws.size();i++){
@@ -95,7 +95,7 @@ public class TestMyBatis {
         	json.put("create_time", sdf);
         	ns.add(json);
     	}
-    	*/
+    	
     	
     /*	
     	List<Reply> repl = replyService.getReplyByComtId(1);
@@ -156,17 +156,18 @@ public class TestMyBatis {
     	else
     		System.out.println(10);
     	*/
+    	/*
     	String stuid = "1614080903221";
     	String keyword = "显示问题";
     	String comment = "abc";
     	Timestamp datetime = new Timestamp(System.currentTimeMillis());
     	int tag = userfeedbackService.putUserfeedback(stuid, keyword, comment, datetime);
-    	
+    	*/
     	//Date d = b.getCreateTime();
-        logger.info(tag);
+        logger.info(nws);
         // System.out.println(user.getUserName());  
         // logger.info("值："+user.getUserName());  
-        logger.info(JSON.toJSONString(tag));
+        logger.info(JSON.toJSONString(nws));
         
     } 
 }

@@ -26,4 +26,6 @@ public interface NewsMapper {
     List<News> selectByPageno(@Param("start")int start);
     
     List<News> selectByKeyword(@Param("keyword")String keyword,@Param("start")int start);
+    
+    List<News> selectByStuid(@Param("stuId")String stuId,@Param("start")int start);
 }

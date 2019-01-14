@@ -303,4 +303,57 @@ public class NewsController {
     	return ns;
     }
     
+    @RequestMapping(value={"/showNewsByStuid"})
+    @ResponseBody
+    public Object showNewsByStuid(HttpServletRequest request,HttpServletResponse response)
+			 throws ServletException, IOException{
+    	JSONObject json1 = GetRequestJsonUtils.getRequestJsonObject(request);
+    	//System.out.println(json1.getIntValue("page"));
+    	int start = (json1.getIntValue("page")*10);
+    	String stuId = json1.getString("stu_id"); 
+    	List<News> nws= newsService.getNewsByStuid(stuId,start);
+    	List<JSONObject> ns= new ArrayList<JSONObject>();
+    	for(int i=0;i<nws.size();i++){
+    		News b = nws.get(i);
+    		JSONObject json = new JSONObject();
+    		Student stu = studentService.getStudentById(b.getStuId());
+    		boolean flaggood;
+    		Praise ps = praiseService.getprasieBySiNi(stuId, b.getNewsId());
+    		if(ps==null){
+    			flaggood = false;
+    		}
+    		else
+    			{flaggood = true;}
+    		json.put("stu_name", stu.getStuName());
+    		json.put("icon_url", stu.getIconUrl());
+    		json.put("news_id", b.getNewsId());
+        	json.put("keyword",b.getKeyword());
+        	json.put("stu_id",b.getStuId());
+        	json.put("news_cont",b.getNewsCont());
+        	json.put("flaggood",flaggood);
+        	List<String> a= new ArrayList<String>();
+        	String img = b.getNewsImg();
+        	String img1 = b.getNewsImg1();
+        	String img2 = b.getNewsImg2();
+        	if(img!=null){
+            a.add(img);
+            }
+        	if(img1!=null){
+        	 a.add(img1);
+        	}
+        	if(img2!=null){
+        	 a.add(img2);
+        	}
+        	json.put("news_image", a);
+        	json.put("comment_num", b.getCommentNum());
+        	json.put("praise_num", b.getPraiseNum());
+        	json.put("browse_num", b.getBrowseNum());
+        	Date d = b.getCreateTime();
+        	String sdf = new SimpleDateFormat("yyyy-MM-dd").format(d);
+        	json.put("create_time", sdf);
+        	ns.add(json);
+    	}
+    	return ns;
+    }
+    
 }
