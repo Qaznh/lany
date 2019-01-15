@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,6 +17,7 @@ import com.cn.wx.pojo.News;
 import com.cn.wx.service.INewsService;
 import com.cn.wx.service.IPraiseService;
 
+@CrossOrigin
 @Controller
 @RequestMapping("/praise")
 public class PraiseController {

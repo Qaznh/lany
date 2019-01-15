@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,6 +17,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.cn.wx.pojo.Xiaolis;
 import com.cn.wx.service.IXiaoliService;
 
+@CrossOrigin
 @Controller
 @RequestMapping("/xiaoli")
 public class XiaolisController {
