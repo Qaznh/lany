@@ -50,7 +50,7 @@ public class CommentController {
 	public Object showComt(HttpServletRequest request,HttpServletResponse response)
 			 throws ServletException, IOException{
 		JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
-		int start = (json.getIntValue("page")*5);
+		int start = (json.getIntValue("page")*6);
 		int newsid = json.getIntValue("news_id");
 		List<Comment> comt = commentService.getCommentByPage(start, newsid);
     	List<JSONObject> ns= new ArrayList<JSONObject>();
