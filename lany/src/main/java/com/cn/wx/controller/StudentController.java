@@ -28,7 +28,8 @@ public class StudentController {
 	private IStudentService studentService;
 	
 	@RequestMapping(value={"/getStu"},method=RequestMethod.POST)
-	public void getStu(HttpServletRequest request,HttpServletResponse response)
+	@ResponseBody
+	public Object getStu(HttpServletRequest request,HttpServletResponse response)
 			throws ServletException, IOException{
 		JSONObject json1 = GetRequestJsonUtils.getRequestJsonObject(request);
 		//String str = json1.toJSONString();
@@ -41,17 +42,19 @@ public class StudentController {
 		if(st_password.equals(password))
 		{
 			//System.out.println("ok");
+			if(st.getActive()==true)
+			{
+				int a = 1;
+				return a;
+			}
+			else{
 			st.setActive(true);
 			studentService.putStuAcitve(st);
-			response.getWriter().print(true);
-			response.getWriter().flush();
-			response.getWriter().close();
+			return true;
+			}
 		}
 		else{
-			response.getWriter().print(false);
-			response.getWriter().flush();
-			response.getWriter().close();
-
+			return false;
 		}	
 	}
 	
@@ -83,14 +86,14 @@ public class StudentController {
 	
 	@RequestMapping(value={"/testStAct"})
     @ResponseBody
-    public boolean testStAct(HttpServletRequest request,HttpServletResponse response)
+    public Object testStAct(HttpServletRequest request,HttpServletResponse response)
 			 throws ServletException, IOException{
 		JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
 		String stuid = json.getString("stu_id");
 		Student st = studentService.getStudentById(stuid);
 		if(st==null){
-			response.setStatus(500);
-			return false;
+			int error = 500;
+			return error;
 		}else{
 		boolean active = st.getActive();
 		return active;}
