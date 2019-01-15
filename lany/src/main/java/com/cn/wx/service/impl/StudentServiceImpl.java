@@ -20,5 +20,9 @@ public class StudentServiceImpl implements IStudentService {
 	public int putIconUrl(Student stu){
 		return this.studentDao.updateByPrimaryKeySelective(stu);
 	}
+	
+	public int putStuAcitve(Student stu){
+		return this.studentDao.updateByPrimaryKeySelective(stu);
+	}
 
 }

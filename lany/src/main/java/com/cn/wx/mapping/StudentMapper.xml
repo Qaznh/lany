@@ -6,9 +6,10 @@
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="stu_name" property="stuName" jdbcType="VARCHAR" />
     <result column="icon_url" property="iconUrl" jdbcType="VARCHAR" />
+    <result column="active" property="active" jdbcType="BIT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, password, stu_name, icon_url
+    id, password, stu_name, icon_url, active
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -22,9 +23,9 @@
   </delete>
   <insert id="insert" parameterType="com.cn.wx.pojo.Student" >
     insert into student (id, password, stu_name, 
-      icon_url)
+      icon_url, active)
     values (#{id,jdbcType=CHAR}, #{password,jdbcType=VARCHAR}, #{stuName,jdbcType=VARCHAR}, 
-      #{iconUrl,jdbcType=VARCHAR})
+      #{iconUrl,jdbcType=VARCHAR}, #{active,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.cn.wx.pojo.Student" >
     insert into student
@@ -41,6 +42,9 @@
       <if test="iconUrl != null" >
         icon_url,
       </if>
+      <if test="active != null" >
+        active,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -54,6 +58,9 @@
       </if>
       <if test="iconUrl != null" >
         #{iconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="active != null" >
+        #{active,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -69,6 +76,9 @@
       <if test="iconUrl != null" >
         icon_url = #{iconUrl,jdbcType=VARCHAR},
       </if>
+      <if test="active != null" >
+        active = #{active,jdbcType=BIT},
+      </if>
     </set>
     where id = #{id,jdbcType=CHAR}
   </update>
@@ -76,7 +86,8 @@
     update student
     set password = #{password,jdbcType=VARCHAR},
       stu_name = #{stuName,jdbcType=VARCHAR},
-      icon_url = #{iconUrl,jdbcType=VARCHAR}
+      icon_url = #{iconUrl,jdbcType=VARCHAR},
+      active = #{active,jdbcType=BIT}
     where id = #{id,jdbcType=CHAR}
   </update>
 </mapper>

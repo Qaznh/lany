@@ -41,6 +41,8 @@ public class StudentController {
 		if(st_password.equals(password))
 		{
 			//System.out.println("ok");
+			st.setActive(true);
+			studentService.putStuAcitve(st);
 			response.getWriter().print(true);
 			response.getWriter().flush();
 			response.getWriter().close();
@@ -77,6 +79,36 @@ public class StudentController {
 		String stuid = json.getString("stu_id");
 		Student st = studentService.getStudentById(stuid);
 		return st;
+	}
+	
+	@RequestMapping(value={"/testStAct"})
+    @ResponseBody
+    public boolean testStAct(HttpServletRequest request,HttpServletResponse response)
+			 throws ServletException, IOException{
+		JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
+		String stuid = json.getString("stu_id");
+		Student st = studentService.getStudentById(stuid);
+		if(st==null){
+			response.setStatus(500);
+			return false;
+		}else{
+		boolean active = st.getActive();
+		return active;}
+	}
+	
+	@RequestMapping(value={"/cgStAct"})
+    @ResponseBody
+    public boolean cgStAct(HttpServletRequest request,HttpServletResponse response)
+			 throws ServletException, IOException{
+		JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
+		String stuid = json.getString("stu_id");
+		Student st = studentService.getStudentById(stuid);
+		st.setActive(false);
+		int tag = studentService.putStuAcitve(st);
+		if(tag==1)
+		    return true;
+		else
+			return false;
 	}
 	
 }

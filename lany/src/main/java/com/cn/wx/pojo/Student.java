@@ -9,6 +9,8 @@ public class Student {
 
     private String iconUrl;
 
+    private Boolean active;
+
     public String getId() {
         return id;
     }
@@ -39,5 +41,13 @@ public class Student {
 
     public void setIconUrl(String iconUrl) {
         this.iconUrl = iconUrl == null ? null : iconUrl.trim();
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }
