@@ -68,7 +68,7 @@ public class TestMyBatis {
     @Test  
     public void test1() {  
         
-    
+    /*
         List<News> nws= newsService.getNewsByStuid("1614080903225", 0);
     	
     	List<JSONObject> ns= new ArrayList<JSONObject>();
@@ -95,7 +95,7 @@ public class TestMyBatis {
         	json.put("create_time", sdf);
         	ns.add(json);
     	}
-    	
+    	*/
     	
     /*	
     	List<Reply> repl = replyService.getReplyByComtId(1);
@@ -164,10 +164,15 @@ public class TestMyBatis {
     	int tag = userfeedbackService.putUserfeedback(stuid, keyword, comment, datetime);
     	*/
     	//Date d = b.getCreateTime();
-        logger.info(nws);
+    	int start = 0;
+    	String stuid = "1614080903236";
+    	List<Comment> comt = commentService.getCommentByStuid(start, stuid);
+    	List<JSONObject> ns= new ArrayList<JSONObject>();
+    	
+        logger.info(comt);
         // System.out.println(user.getUserName());  
         // logger.info("Öµ£º"+user.getUserName());  
-        logger.info(JSON.toJSONString(nws));
+        logger.info(JSON.toJSONString(comt));
         
     } 
 }

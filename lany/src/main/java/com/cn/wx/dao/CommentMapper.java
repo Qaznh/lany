@@ -22,4 +22,6 @@ public interface CommentMapper {
     int updateByPrimaryKey(Comment record);
     
     List<Comment> selectByPage(@Param("start")int start,@Param("news_id")Integer news_id);
+    
+    List<Comment> selectByStuid(@Param("start")int start,@Param("stu_id")String news_id);
 }

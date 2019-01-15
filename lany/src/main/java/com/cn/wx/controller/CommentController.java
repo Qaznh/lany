@@ -41,6 +41,7 @@ public class CommentController {
 	
 	@Resource
 	private IReplyService replyService;
+	
 	@Resource  
     private IStudentService studentService;
 	
@@ -96,7 +97,68 @@ public class CommentController {
 		return ns;
 	}
 	
-	
+	@RequestMapping(value={"/showComtBySi"},method=RequestMethod.POST)
+	@ResponseBody
+	public Object showComtbyStuid(HttpServletRequest request,HttpServletResponse response)
+			 throws ServletException, IOException{
+		JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
+		int start = (json.getIntValue("page")*10);
+		String stuid = json.getString("stu_id") ;
+		List<Comment> comt = commentService.getCommentByStuid(start, stuid);
+		List<List> ctn= new ArrayList<List>();
+    	for(int i=0;i<comt.size();i++){
+    		Comment ct = comt.get(i);
+    		JSONObject json1 = new JSONObject();
+    		JSONObject json2 = new JSONObject();
+    		List<JSONObject> count = new ArrayList<JSONObject>();
+    		
+    		Student stu = studentService.getStudentById(ct.getStuId());
+    		json1.put("stu_name", stu.getStuName());
+    		json1.put("icon_url", stu.getIconUrl());
+    		json1.put("id", ct.getCommentId());
+        	json1.put("stu_id",ct.getStuId());
+        	json1.put("detail_comment",ct.getCommentCont());
+        	json1.put("news_id", ct.getNewsId());
+        	Date d = ct.getCreateTime();
+        	String sdf = new SimpleDateFormat("yyyy-MM-dd").format(d);
+        	json1.put("create_time", sdf);
+        	
+        	News nw = newsService.getNewsById(ct.getNewsId());
+        	Student stu1 = studentService.getStudentById(nw.getStuId());
+    		json2.put("stu_name", stu1.getStuName());
+    		json2.put("icon_url",stu1.getIconUrl());
+    		json2.put("news_id", nw.getNewsId());
+        	json2.put("keyword",nw.getKeyword());
+        	json2.put("stu_id",nw.getStuId());
+        	json2.put("news_cont",nw.getNewsCont());
+        	List<String> a= new ArrayList<String>();
+        	String img = nw.getNewsImg();
+        	String img1 = nw.getNewsImg1();
+        	String img2 = nw.getNewsImg2();
+        	if(img!=null){
+            a.add(img);
+            }
+        	if(img1!=null){
+        	 a.add(img1);
+        	}
+        	if(img2!=null){
+        	 a.add(img2);
+        	}
+        	json2.put("news_image", a);
+        	json2.put("comment_num", nw.getCommentNum());
+        	json2.put("praise_num", nw.getPraiseNum());
+        	json2.put("browse_num", nw.getBrowseNum());
+        	Date d1 = nw.getCreateTime();
+        	String sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d1);
+        	json2.put("create_time", sdf1);
+        	
+        	count.add(json1);
+        	count.add(json2);
+        	
+        	ctn.add(count);
+        	}
+    	return ctn;
+	}
 	
 	@RequestMapping(value={"/addComt"})
     @ResponseBody

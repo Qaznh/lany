@@ -33,7 +33,8 @@ public class CommentServiceImpl implements ICommentService{
 	public List<Comment> getCommentByPage(int start,int news_id){
 		return this.commentDao.selectByPage(start, news_id);
 	}
-
-
 	
+	public List<Comment> getCommentByStuid(int start,String stu_id){
+		return this.commentDao.selectByStuid(start, stu_id);
+	}
 }

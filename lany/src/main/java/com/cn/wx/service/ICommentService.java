@@ -12,4 +12,6 @@ public interface ICommentService {
 	public int putComment(int newsId,String stuId,String commentCont,Timestamp datetime);
 	
 	public List<Comment> getCommentByPage(int start,int news_id);
+	
+	public List<Comment> getCommentByStuid(int start,String stu_id);
 }

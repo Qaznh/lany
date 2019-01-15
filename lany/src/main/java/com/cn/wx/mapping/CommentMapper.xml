@@ -33,6 +33,15 @@
     where news_id = #{news_id}
     order by news_id limit #{start},6
   </select>
+   <select id="selectByStuid"  resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news_comment
+    where stu_id = #{stu_id}
+    order by news_id limit #{start},10
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from news_comment
     where comment_id = #{commentId,jdbcType=INTEGER}
