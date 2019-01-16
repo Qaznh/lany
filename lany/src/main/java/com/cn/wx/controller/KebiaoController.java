@@ -17,7 +17,9 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.cn.wx.pojo.Kebiao;
 import com.cn.wx.pojo.KebiaoKey;
+import com.cn.wx.pojo.Student;
 import com.cn.wx.service.IKebiaoService;
+import com.cn.wx.service.IStudentService;
 
 @CrossOrigin
 @Controller
@@ -27,6 +29,9 @@ public class KebiaoController {
 	@Resource
 	private IKebiaoService kebiaoService;
 	
+	@Resource
+	private IStudentService studentService;
+	
 	@RequestMapping(value={"/showKebiao"},method=RequestMethod.POST)
 	@ResponseBody
 	public Object showKebiao(HttpServletRequest request,HttpServletResponse response) 
@@ -35,6 +40,14 @@ public class KebiaoController {
 		     //String str = json1.toJSONString();
 		     //System.out.println(str);
 		     String id = json1.getString("id");
+		     String token = json1.getString("token");
+			 Student st = studentService.getStudentById(id);
+			 if(!token.equals(st.getToken())){
+					JSONObject js = new JSONObject();
+					js.put("token_state", false);
+					return js;
+				} 
+			else{
 		     //System.out.println(id);
 		     //String kb_id = GetKbid.getKbid(id);
 		     int year = GetData.getYear(id);
@@ -56,6 +69,7 @@ public class KebiaoController {
 			 response.setCharacterEncoding("UTF-8");
 			 return arry;
 			}
+	    }
 }
 	
 	//@RequestMapping(value={"/addKebiao"},method=RequestMethod.POST)

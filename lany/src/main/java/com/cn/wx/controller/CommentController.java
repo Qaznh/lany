@@ -51,7 +51,7 @@ public class CommentController {
 			 throws ServletException, IOException{
 		JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
 		int start = (json.getIntValue("page")*6);
-		int newsid = json.getIntValue("news_id");
+		int newsid = json.getIntValue("news_id");;
 		List<Comment> comt = commentService.getCommentByPage(start, newsid);
     	List<JSONObject> ns= new ArrayList<JSONObject>();
     	for(int i=0;i<comt.size();i++){
@@ -94,7 +94,8 @@ public class CommentController {
         	
         	ns.add(json1);
     	   }
-		return ns;
+		 return ns;
+		
 	}
 	
 	@RequestMapping(value={"/showComtBySi"},method=RequestMethod.POST)
@@ -104,6 +105,14 @@ public class CommentController {
 		JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
 		int start = (json.getIntValue("page")*10);
 		String stuid = json.getString("stu_id") ;
+		String token = json.getString("token");
+		Student st = studentService.getStudentById(stuid);
+		if(!token.equals(st.getToken())){
+			JSONObject js = new JSONObject();
+			js.put("token_state", false);
+			return js;
+		} 
+		else{
 		List<Comment> comt = commentService.getCommentByStuid(start, stuid);
 		List<List> ctn= new ArrayList<List>();
     	for(int i=0;i<comt.size();i++){
@@ -158,15 +167,24 @@ public class CommentController {
         	ctn.add(count);
         	}
     	return ctn;
+		}
 	}
 	
 	@RequestMapping(value={"/addComt"})
     @ResponseBody
-	public boolean addComt(HttpServletRequest request)
+	public Object addComt(HttpServletRequest request)
 			 throws ServletException, IOException{
 		request.setCharacterEncoding("UTF-8");
 		JSONObject json1 = GetRequestJsonUtils.getRequestJsonObject(request);
 		String stuId = json1.getString("stuId");
+		String token = json1.getString("token");
+		Student st = studentService.getStudentById(stuId);
+		if(!token.equals(st.getToken())){
+			JSONObject js = new JSONObject();
+			js.put("token_state", false);
+			return js;
+		} 
+		else{
 		int newsId = json1.getIntValue("newsId");
 		//System.out.println(newsId);
 		String comcont = json1.getString("comcont");
@@ -185,5 +203,6 @@ public class CommentController {
 			}
 		else
 			return false;
+	  }
 	}
 }

@@ -11,6 +11,8 @@ public class Student {
 
     private Boolean active;
 
+    private String token;
+
     public String getId() {
         return id;
     }
@@ -49,5 +51,13 @@ public class Student {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token == null ? null : token.trim();
     }
 }

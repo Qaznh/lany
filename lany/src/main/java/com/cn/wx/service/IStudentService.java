@@ -10,4 +10,6 @@ public interface IStudentService {
 	public int putIconUrl(Student stu);
 	
 	public int putStuAcitve(Student stu);
+	
+	public int putStuToken(Student stu);
 }

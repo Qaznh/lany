@@ -17,8 +17,9 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.cn.wx.pojo.Grade;
 import com.cn.wx.pojo.GradeKey;
+import com.cn.wx.pojo.Student;
 import com.cn.wx.service.IGradeService;
-
+import com.cn.wx.service.IStudentService;
 import com.cn.wx.controller.GetData;
 
 @CrossOrigin
@@ -29,6 +30,9 @@ public class GradeController {
 	@Resource
 	private IGradeService gradeService;
 	
+	@Resource
+	private IStudentService studentService;
+	
 	@RequestMapping(value={"/showGrade"},method=RequestMethod.POST)
 	@ResponseBody
 	public Object showGrade(HttpServletRequest request,HttpServletResponse response)
@@ -37,6 +41,14 @@ public class GradeController {
 	    //String str = json1.toJSONString();
 	    //System.out.println(str);
 	    String id = json1.getString("id");
+	    String token = json1.getString("token");
+	    Student st = studentService.getStudentById(id);
+	    if(!token.equals(st.getToken())){
+			JSONObject js = new JSONObject();
+			js.put("token_state", false);
+			return js;
+		} 
+		else{
 	    //System.out.println(id);
 	    int year = GetData.getYear(id);
 	    JSONArray arry = new JSONArray();
@@ -58,5 +70,6 @@ public class GradeController {
 	    //System.out.println(arry);
 	    response.setCharacterEncoding("UTF-8");
 		return arry;
-	}
+	   }
+     }
 }

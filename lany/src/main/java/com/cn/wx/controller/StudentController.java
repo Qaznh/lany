@@ -36,6 +36,7 @@ public class StudentController {
 	     //System.out.println(str);
 		String id = json1.getString("id");
 		String password = json1.getString("password");
+		String token = json1.getString("token");
 		//System.out.println(password);
 		Student st = studentService.getStudentById(id);
 		if(st==null){
@@ -48,13 +49,13 @@ public class StudentController {
 			//System.out.println("ok");
 			if(st.getActive()==true)
 			{
-				 JSONObject json = new JSONObject();
-			     json.put("active", st.getActive());
-			     json.put("loginflag", 1);
-				return json;
+				 st.setToken(token);
+				 studentService.putStuAcitve(st);
+				return 1;
 			}
 			else{
 			     st.setActive(true);
+			     st.setToken(token);
 			     studentService.putStuAcitve(st);
 			     return 0;
 			    }
@@ -87,8 +88,16 @@ public class StudentController {
 			 throws ServletException, IOException{
 		JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
 		String stuid = json.getString("stu_id");
+		String token = json.getString("token");
+		System.out.println(token);
 		Student st = studentService.getStudentById(stuid);
-		return st;
+		if(!token.equals(st.getToken())){
+			JSONObject js = new JSONObject();
+			js.put("token_state", false);
+			return js;
+		} 
+		else
+			return st;
 	}
 	
 	@RequestMapping(value={"/testStAct"})
@@ -119,6 +128,17 @@ public class StudentController {
 		    return true;
 		else
 			return false;
+	}
+	
+	@RequestMapping(value={"/getToken"})
+    @ResponseBody
+    public Object getToken(HttpServletRequest request,HttpServletResponse response)
+			 throws ServletException, IOException{
+		JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
+		String stuid = json.getString("stu_id");
+		Student st = studentService.getStudentById(stuid);
+		String token = st.getToken();
+		return token;
 	}
 	
 }

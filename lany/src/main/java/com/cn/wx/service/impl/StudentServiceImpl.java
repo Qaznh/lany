@@ -24,5 +24,9 @@ public class StudentServiceImpl implements IStudentService {
 	public int putStuAcitve(Student stu){
 		return this.studentDao.updateByPrimaryKeySelective(stu);
 	}
+	
+	public int putStuToken(Student stu){
+		return this.studentDao.updateByPrimaryKeySelective(stu);
+	}
 
 }

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cn.wx.pojo.News;
+import com.cn.wx.pojo.Student;
 import com.cn.wx.service.INewsService;
 import com.cn.wx.service.IPraiseService;
+import com.cn.wx.service.IStudentService;
 
 @CrossOrigin
 @Controller
@@ -28,14 +30,25 @@ public class PraiseController {
 	@Resource
 	private IPraiseService praiseService;
 	
+	@Resource
+	private IStudentService studentService;
+	
 	@RequestMapping(value={"/addPraise"})
     @ResponseBody
-	public void addPraise(HttpServletRequest request)
+	public Object addPraise(HttpServletRequest request)
 			 throws ServletException, IOException{
 		JSONObject json1 = GetRequestJsonUtils.getRequestJsonObject(request);
 		boolean flaggood = json1.getBooleanValue("flaggood");
 		//System.out.println(json1);
 		String stuId = json1.getString("stu_id");
+		String token = json1.getString("token");
+		Student st = studentService.getStudentById(stuId);
+		if(!token.equals(st.getToken())){
+			JSONObject js = new JSONObject();
+			js.put("token_state", false);
+			return js;
+		} 
+		else{
 		int newsId = json1.getIntValue("news_id");
 		Timestamp datetime = new Timestamp(System.currentTimeMillis());
 		if(flaggood==true){
@@ -48,6 +61,7 @@ public class PraiseController {
     		   news.setPraiseNum(praise_num);
     		   newsService.addNewsPsNum(news);
     		//System.out.println(tag2);
+    		   
     	    }
     	  }
     	    else
@@ -61,17 +75,27 @@ public class PraiseController {
     	    		newsService.addNewsPsNum(news2);
     			}
     	    }
+		return 0;
+		}
 }
 	
 	
 	@RequestMapping(value={"/outPraise"})
     @ResponseBody
-    public void outPraise(HttpServletRequest request)
+    public Object outPraise(HttpServletRequest request)
 			 throws ServletException, IOException{
 		JSONObject json1 = GetRequestJsonUtils.getRequestJsonObject(request);
 		boolean flaggood = json1.getBooleanValue("flaggood");
 		if(flaggood==false){
 			String stuId = json1.getString("stu_id");
+			String token = json1.getString("token");
+			Student st = studentService.getStudentById(stuId);
+			if(!token.equals(st.getToken())){
+				JSONObject js = new JSONObject();
+				js.put("token_state", false);
+				return js;
+			} 
+			else{
 			int newsId = json1.getIntValue("news_id");
 			int tag = praiseService.outPraise(stuId, newsId);
 			if(tag==1){
@@ -81,6 +105,7 @@ public class PraiseController {
 	    		news.setPraiseNum(praise_num);
 	    		newsService.addNewsPsNum(news);
 			}
+			}
 		}
-	}
+		return 0;}
 }

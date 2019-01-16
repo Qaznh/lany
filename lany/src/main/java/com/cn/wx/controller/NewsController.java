@@ -172,19 +172,26 @@ public class NewsController {
 	
     @RequestMapping(value={"/addNews"})
     @ResponseBody
-    public boolean addNews(HttpServletRequest request)
+    public Object addNews(HttpServletRequest request)
 			 throws ServletException, IOException{
     	
     	request.setCharacterEncoding("UTF-8");
     	JSONObject json1 = GetRequestJsonUtils.getRequestJsonObject(request);   	
-    	String id = json1.getString("id");
+    	String id = json1.getString("id");  	
     	//System.out.println(id);
     	String keyword = json1.getString("keyword");
     	//System.out.println(keyword);
         String news_cont = json1.getString("news_cont");
         //System.out.println(news_cont);
         Timestamp datetime = new Timestamp(System.currentTimeMillis());
-        
+		String token = json1.getString("token");
+		Student st = studentService.getStudentById(id);
+		if(!token.equals(st.getToken())){
+			JSONObject js = new JSONObject();
+			js.put("token_state", false);
+			return js;
+		} 
+		else{
         int tag = newsService.putNews(id, keyword, news_imgurl, news_imgurl1, news_imgurl2, news_cont, datetime);
         news_imgurl=null;
         news_imgurl1=null;
@@ -194,7 +201,8 @@ public class NewsController {
         else
           return false;
     
-   }
+		}
+	}
     
     @RequestMapping(value={"/showNewsPage"})
     @ResponseBody
@@ -313,6 +321,14 @@ public class NewsController {
     	//System.out.println(json1.getIntValue("page"));
     	int start = (json1.getIntValue("page")*10);
     	String stuId = json1.getString("stu_id"); 
+		String token = json1.getString("token");
+		Student st = studentService.getStudentById(stuId);
+		if(!token.equals(st.getToken())){
+			JSONObject js = new JSONObject();
+			js.put("token_state", false);
+			return js;
+		} 
+		else{
     	List<News> nws= newsService.getNewsByStuid(stuId,start);
     	List<JSONObject> ns= new ArrayList<JSONObject>();
     	for(int i=0;i<nws.size();i++){
@@ -356,6 +372,7 @@ public class NewsController {
         	ns.add(json);
     	}
     	return ns;
+    }
     }
     
 }
