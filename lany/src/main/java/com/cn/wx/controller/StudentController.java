@@ -29,43 +29,19 @@ public class StudentController {
 	
 	@RequestMapping(value={"/getStu"},method=RequestMethod.POST)
 	@ResponseBody
-	public Object getStu(HttpServletRequest request,HttpServletResponse response)
+	public void getStu(HttpServletRequest request,HttpServletResponse response)
 			throws ServletException, IOException{
 		JSONObject json1 = GetRequestJsonUtils.getRequestJsonObject(request);
 		//String str = json1.toJSONString();
 	     //System.out.println(str);
 		String id = json1.getString("id");
-		String password = json1.getString("password");
 		String token = json1.getString("token");
-		
-		//System.out.println(password);
+		//System.out.println(json1);
 		Student st = studentService.getStudentById(id);
-		if(st==null){
-			return 2;
+		if(st!=null){
+			   st.setToken(token);
+			   studentService.putStuToken(st);
 		}
-		else{
-		    String st_password = st.getPassword();
-		if(st_password.equals(password))
-		{
-			//System.out.println("ok");
-			if(st.getActive()==true)
-			{
-				 st.setToken(token);
-				 studentService.putStuAcitve(st);
-				return 1;
-			}
-			
-			else{
-			     st.setActive(true);
-			     st.setToken(token);
-			     studentService.putStuAcitve(st);
-			     return 0;
-			    }
-		}
-		else{
-			return 2;
-		    }	
-	  }
 	}
 	
 	@RequestMapping(value={"/uploadIcon"})
@@ -91,7 +67,7 @@ public class StudentController {
 		JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
 		String stuid = json.getString("stu_id");
 		String token = json.getString("token");
-		System.out.println(token);
+		//System.out.println(token);
 		Student st = studentService.getStudentById(stuid);
 		if(!token.equals(st.getToken())){
 			JSONObject js = new JSONObject();
@@ -107,15 +83,36 @@ public class StudentController {
     public Object testStAct(HttpServletRequest request,HttpServletResponse response)
 			 throws ServletException, IOException{
 		JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
-		String stuid = json.getString("stu_id");
+		String stuid = json.getString("id");
+		String password = json.getString("password");
+		String token = json.getString("token");
 		Student st = studentService.getStudentById(stuid);
+		//System.out.println(json);
 		if(st==null){
 			int error = 500;
 			return error;
-		}else{
-		boolean active = st.getActive();
-		return active;}
-	}
+		}
+		else{
+			if(st.getPassword().equals(password))
+			{
+		      if(st.getActive())
+		      {
+		    	  return 1;
+		      }
+		      else{
+		          {
+		    	     st.setActive(true);
+				     st.setToken(token);
+				     studentService.putStuAcitve(st);
+				     return 0;
+		          }
+		      }
+	     }
+			else{
+	    	 return 2;
+	     }
+	   }
+     }
 	
 	@RequestMapping(value={"/cgStAct"})
     @ResponseBody
