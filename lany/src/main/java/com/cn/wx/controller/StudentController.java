@@ -38,24 +38,31 @@ public class StudentController {
 		String password = json1.getString("password");
 		//System.out.println(password);
 		Student st = studentService.getStudentById(id);
-		String st_password = st.getPassword();
+		if(st==null){
+			return 2;
+		}
+		else{
+		    String st_password = st.getPassword();
 		if(st_password.equals(password))
 		{
 			//System.out.println("ok");
 			if(st.getActive()==true)
 			{
-				int a = 1;
-				return a;
+				 JSONObject json = new JSONObject();
+			     json.put("active", st.getActive());
+			     json.put("loginflag", 1);
+				return json;
 			}
 			else{
-			st.setActive(true);
-			studentService.putStuAcitve(st);
-			return true;
-			}
+			     st.setActive(true);
+			     studentService.putStuAcitve(st);
+			     return 0;
+			    }
 		}
 		else{
-			return false;
-		}	
+			return 2;
+		    }	
+	  }
 	}
 	
 	@RequestMapping(value={"/uploadIcon"})
