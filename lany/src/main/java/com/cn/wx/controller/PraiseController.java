@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 import com.cn.wx.pojo.News;
 import com.cn.wx.pojo.Student;
+import com.cn.wx.service.IInformationService;
 import com.cn.wx.service.INewsService;
 import com.cn.wx.service.IPraiseService;
 import com.cn.wx.service.IStudentService;
@@ -32,6 +33,9 @@ public class PraiseController {
 	
 	@Resource
 	private IStudentService studentService;
+	
+	@Resource
+	private IInformationService informationService;
 	
 	@RequestMapping(value={"/addPraise"})
     @ResponseBody
@@ -60,8 +64,8 @@ public class PraiseController {
     		   praise_num++;
     		   news.setPraiseNum(praise_num);
     		   newsService.addNewsPsNum(news);
-    		//System.out.println(tag2);
-    		   
+    		   //System.out.println(tag2);
+    		  informationService.putInformation(news.getStuId(), stuId, newsId, true, 0, 0, datetime);
     	    }
     	  }
     	    else

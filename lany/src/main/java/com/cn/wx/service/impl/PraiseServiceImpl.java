@@ -1,6 +1,7 @@
 package com.cn.wx.service.impl;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.annotation.Resource;
 
@@ -36,5 +37,9 @@ public class PraiseServiceImpl implements IPraiseService{
 	
 	public Praise getprasieBySiNi(String stuId,int newsId){
 		return this.praiseDao.selectBySiNi(stuId, newsId);
+	}
+	
+	public Praise getPraiseId(String stu_id,int news_id,Date datetime){
+		return this.praiseDao.selectId(stu_id, news_id, datetime);
 	}
 }

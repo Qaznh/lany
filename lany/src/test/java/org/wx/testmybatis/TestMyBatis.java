@@ -20,6 +20,7 @@ import org.springframework.util.ClassUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.cn.wx.pojo.Comment;
+import com.cn.wx.pojo.Information;
 import com.cn.wx.pojo.Keywords;
 import com.cn.wx.pojo.News;
 import com.cn.wx.pojo.Praise;
@@ -27,6 +28,7 @@ import com.cn.wx.pojo.Reply;
 import com.cn.wx.pojo.Student;
 import com.cn.wx.pojo.Xiaolis;
 import com.cn.wx.service.ICommentService;
+import com.cn.wx.service.IInformationService;
 import com.cn.wx.service.IKeywordService;
 import com.cn.wx.service.INewsService;
 import com.cn.wx.service.IPraiseService;
@@ -59,6 +61,9 @@ public class TestMyBatis {
     
     @Resource  
     private IUserfeedbackService userfeedbackService = null; 
+    
+    @Resource
+	private IInformationService informationService = null;
 //  @Before  
 //  public void before() {  
 //      ac = new ClassPathXmlApplicationContext("applicationContext.xml");  
@@ -164,15 +169,37 @@ public class TestMyBatis {
     	int tag = userfeedbackService.putUserfeedback(stuid, keyword, comment, datetime);
     	*/
     	//Date d = b.getCreateTime();
-    	int start = 0;
+    	/*int start = 0;
     	String stuid = "1614080903236";
     	List<Comment> comt = commentService.getCommentByStuid(start, stuid);
-    	List<JSONObject> ns= new ArrayList<JSONObject>();
+    	List<JSONObject> ns= new ArrayList<JSONObject>();*/
+    	/*
+    	String targetStu = "1614080903221";
+    	String fromStu = "1614080903221";
+    	int newsId = 1;
+    	int commentId = 1;
+    	boolean praise = false;
+    	int replyId = 1;
+    	Timestamp datetime = new Timestamp(System.currentTimeMillis());
+    	int tag = informationService.putInformation(targetStu, fromStu, newsId, praise, commentId, replyId, datetime);
+    	*/
+    	/*
     	
-        logger.info(comt);
+    	int start = 0;
+    	String targetStu = "1614080903221";
+    	List<Information> infm = informationService.getInformation(start, targetStu);
+    	*/
+    	
+    	Praise  pr = praiseService.getpraiseById(15);
+    	Date datetime = pr.getCrawlTime();
+    	String stuid = "1614080903221";
+    	int newsid = 11;
+        Praise b = praiseService.getPraiseId(stuid, newsid, datetime);
+    	
+        logger.info(b);
         // System.out.println(user.getUserName());  
         // logger.info("Öµ£º"+user.getUserName());  
-        logger.info(JSON.toJSONString(comt));
+        logger.info(JSON.toJSONString(b));
         
     } 
 }

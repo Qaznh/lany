@@ -17,6 +17,12 @@
     from news_praise
     where id = #{id,jdbcType=INTEGER}
   </select>
+    <select id="selectId" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from news_praise
+    where stu_id= #{stu_id} and news_id =#{news_id}  and crawl_time =#{crawl_time} 
+  </select>
   <select id="selectBySiNi" resultMap="BaseResultMap"  >
     select 
     <include refid="Base_Column_List" />
