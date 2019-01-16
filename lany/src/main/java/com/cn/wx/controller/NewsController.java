@@ -321,14 +321,6 @@ public class NewsController {
     	//System.out.println(json1.getIntValue("page"));
     	int start = (json1.getIntValue("page")*10);
     	String stuId = json1.getString("stu_id"); 
-		String token = json1.getString("token");
-		Student st = studentService.getStudentById(stuId);
-		if(!token.equals(st.getToken())){
-			JSONObject js = new JSONObject();
-			js.put("token_state", false);
-			return js;
-		} 
-		else{
     	List<News> nws= newsService.getNewsByStuid(stuId,start);
     	List<JSONObject> ns= new ArrayList<JSONObject>();
     	for(int i=0;i<nws.size();i++){
@@ -373,6 +365,6 @@ public class NewsController {
     	}
     	return ns;
     }
-    }
+
     
 }

@@ -105,14 +105,6 @@ public class CommentController {
 		JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
 		int start = (json.getIntValue("page")*10);
 		String stuid = json.getString("stu_id") ;
-		String token = json.getString("token");
-		Student st = studentService.getStudentById(stuid);
-		if(!token.equals(st.getToken())){
-			JSONObject js = new JSONObject();
-			js.put("token_state", false);
-			return js;
-		} 
-		else{
 		List<Comment> comt = commentService.getCommentByStuid(start, stuid);
 		List<List> ctn= new ArrayList<List>();
     	for(int i=0;i<comt.size();i++){
@@ -167,7 +159,7 @@ public class CommentController {
         	ctn.add(count);
         	}
     	return ctn;
-		}
+		
 	}
 	
 	@RequestMapping(value={"/addComt"})
