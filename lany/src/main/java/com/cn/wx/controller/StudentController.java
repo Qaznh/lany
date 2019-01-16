@@ -37,6 +37,7 @@ public class StudentController {
 		String id = json1.getString("id");
 		String password = json1.getString("password");
 		String token = json1.getString("token");
+		
 		//System.out.println(password);
 		Student st = studentService.getStudentById(id);
 		if(st==null){
@@ -53,6 +54,7 @@ public class StudentController {
 				 studentService.putStuAcitve(st);
 				return 1;
 			}
+			
 			else{
 			     st.setActive(true);
 			     st.setToken(token);
