@@ -8,6 +8,8 @@ import com.cn.wx.pojo.Reply;
 
 public interface ReplyMapper {
     int deleteByPrimaryKey(Integer replyId);
+    
+    int deleteByReplyId(@Param("reply_id")int reply_id);
 
     int insert(Reply record);
 

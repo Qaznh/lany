@@ -69,6 +69,10 @@
     delete from news
     where news_id = #{newsId,jdbcType=INTEGER}
   </delete>
+    <delete id="deleteByNewId"  >
+    delete from news
+    where news_id = #{news_id}
+  </delete>
   <insert id="insert" parameterType="com.cn.wx.pojo.News" >
     insert into news (news_id, keyword, stu_id, 
       news_img, comment_num, praise_num, 

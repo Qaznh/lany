@@ -217,9 +217,16 @@ public class CommentController {
     public Object delCommentByid(HttpServletRequest request,HttpServletResponse response)
 			 throws ServletException, IOException{
     	JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
+    	//System.out.println(json);
     	int comment_id = json.getIntValue("comment_id");
+    	int news_id = json.getIntValue("news_id");
     	int tag = commentService.delCommentById(comment_id);
     	if(tag==1){
+        	News ns = newsService.getNewsById(news_id);
+        	int  comNu=ns.getCommentNum();
+        	     comNu--;
+        	     ns.setCommentNum(comNu);
+        	newsService.addNewsCmNum(ns);
     		return true;
     	}else
     	{

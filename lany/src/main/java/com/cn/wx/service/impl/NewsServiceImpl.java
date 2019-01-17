@@ -61,6 +61,6 @@ public class NewsServiceImpl implements INewsService{
 	}
 	
 	public int delNewsById(int newsId){
-		return this.newsDao.deleteByPrimaryKey(newsId);
+		return this.newsDao.deleteByNewId(newsId);
 	}
 }

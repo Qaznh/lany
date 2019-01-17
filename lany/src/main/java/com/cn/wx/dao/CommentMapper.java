@@ -8,6 +8,8 @@ import com.cn.wx.pojo.Comment;
 
 public interface CommentMapper {
     int deleteByPrimaryKey(Integer commentId);
+    
+    int deleteByCommentId(@Param("comment_id")int comment_id);
 
     int insert(Comment record);
 

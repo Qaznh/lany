@@ -54,6 +54,10 @@
     delete from news_comment
     where comment_id = #{commentId,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteByCommentId" >
+    delete from news_comment
+    where comment_id = #{comment_id}
+  </delete>
   <insert id="insert" parameterType="com.cn.wx.pojo.Comment" >
     insert into news_comment (comment_id, news_id, stu_id, 
       create_time, comment_cont)

@@ -64,8 +64,8 @@ public class ReplyController {
 		int tag = replyService.putReply(commentId, fromStuId, toStuId, replyCont, ts);
 		if(tag==1)
 		{
-			System.out.println(datetime);
-			System.out.println(sdf1);
+			//ystem.out.println(datetime);
+			//System.out.println(sdf1);
 			Reply rpy = replyService.getReplyId(fromStuId, commentId, sdf1);
 			int tm = rpy.getReplyId();
 			informationService.putInformation(fromStuId, toStuId, 0, false, commentId, tm, datetime);

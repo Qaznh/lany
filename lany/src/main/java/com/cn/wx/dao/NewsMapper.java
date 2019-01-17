@@ -9,6 +9,8 @@ import com.cn.wx.pojo.News;
 public interface NewsMapper {
 	
     int deleteByPrimaryKey(Integer newsId);
+    
+    int deleteByNewId(@Param("news_id")int news_id);
 
     int insert(News record);
 

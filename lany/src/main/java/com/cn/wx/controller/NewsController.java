@@ -371,6 +371,7 @@ public class NewsController {
     public Object delNewsByid(HttpServletRequest request,HttpServletResponse response)
 			 throws ServletException, IOException{
     	JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
+    	//System.out.println(json);
     	int news_id = json.getIntValue("news_id");
     	int tag = newsService.delNewsById(news_id);
     	if(tag==1){

@@ -45,6 +45,10 @@
     delete from news_reply
     where reply_id = #{replyId,jdbcType=INTEGER}
   </delete>
+    <delete id="deleteByReplyId" >
+    delete from news_reply
+    where reply_id = #{reply_id}
+  </delete>
   <insert id="insert" parameterType="com.cn.wx.pojo.Reply" >
     insert into news_reply (reply_id, comment_id, from_stuid, 
       to_stuid, create_time, reply_cont

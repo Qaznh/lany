@@ -41,7 +41,7 @@ public class ReplyServiceImpl implements IReplyService{
 	}
 	
 	public int delReplyById(int replyId){
-		return this.replyDao.deleteByPrimaryKey(replyId);
+		return this.replyDao.deleteByReplyId(replyId);
 	}
 
 }

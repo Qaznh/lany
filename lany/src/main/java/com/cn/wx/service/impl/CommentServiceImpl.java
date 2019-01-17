@@ -1,7 +1,6 @@
 package com.cn.wx.service.impl;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -44,6 +43,6 @@ public class CommentServiceImpl implements ICommentService{
 	}
 	
 	public int delCommentById(int commentId){
-		return this.commentDao.deleteByPrimaryKey(commentId);
+		return this.commentDao.deleteByCommentId(commentId);
 	}
 }

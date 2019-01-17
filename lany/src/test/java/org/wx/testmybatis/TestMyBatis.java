@@ -204,7 +204,7 @@ public class TestMyBatis {
     	boolean praise = false;
     	Information inf = informationService.getInformationPraise(fromStu, newsId, praise);
     	*/
-    	int a = informationService.delInformaBySi("1614080903203");
+    	int a = newsService.delNewsById(4);
     	
         logger.info(a);
         // System.out.println(user.getUserName());  
