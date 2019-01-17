@@ -72,6 +72,7 @@ public class CommentController {
         	Date d = ct.getCreateTime();
         	String sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d);
         	json1.put("create_time", sdf);
+        	json1.put("ComReplay", "");
         	
         	List<Reply> repl = replyService.getReplyByComtId(ct.getCommentId());
         	List<JSONObject> repy= new ArrayList<JSONObject>();
