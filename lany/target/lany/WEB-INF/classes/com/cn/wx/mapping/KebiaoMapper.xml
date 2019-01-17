@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.wx.dao.KebiaoMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.wx.pojo.Kebiao" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <id column="term" property="term" jdbcType="INTEGER" />
+    <result column="kebiao_url" property="kebiaoUrl" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, term, kebiao_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.cn.wx.pojo.KebiaoKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from kebiao
+    where id = #{id,jdbcType=CHAR}
+      and term = #{term,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.cn.wx.pojo.KebiaoKey" >
+    delete from kebiao
+    where id = #{id,jdbcType=CHAR}
+      and term = #{term,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cn.wx.pojo.Kebiao" >
+    insert into kebiao (id, term, kebiao_url
+      )
+    values (#{id,jdbcType=CHAR}, #{term,jdbcType=INTEGER}, #{kebiaoUrl,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.wx.pojo.Kebiao" >
+    insert into kebiao
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="term != null" >
+        term,
+      </if>
+      <if test="kebiaoUrl != null" >
+        kebiao_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="term != null" >
+        #{term,jdbcType=INTEGER},
+      </if>
+      <if test="kebiaoUrl != null" >
+        #{kebiaoUrl,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.wx.pojo.Kebiao" >
+    update kebiao
+    <set >
+      <if test="kebiaoUrl != null" >
+        kebiao_url = #{kebiaoUrl,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+      and term = #{term,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.wx.pojo.Kebiao" >
+    update kebiao
+    set kebiao_url = #{kebiaoUrl,jdbcType=CHAR}
+    where id = #{id,jdbcType=CHAR}
+      and term = #{term,jdbcType=INTEGER}
+  </update>
+</mapper>

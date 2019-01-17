@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.wx.dao.InformationMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.wx.pojo.Information" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="target_stu" property="targetStu" jdbcType="VARCHAR" />
+    <result column="from_stu" property="fromStu" jdbcType="VARCHAR" />
+    <result column="news_id" property="newsId" jdbcType="INTEGER" />
+    <result column="praise" property="praise" jdbcType="BIT" />
+    <result column="comment_id" property="commentId" jdbcType="INTEGER" />
+    <result column="reply_id" property="replyId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, target_stu, from_stu, news_id, praise, comment_id, reply_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from my_information
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+   <select id="selectByPraise" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from my_information
+    where from_stu = #{from_stu} and news_id = #{news_id} and praise = #{praise}
+  </select>
+  <select id="selectByStuid" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from my_information
+    where target_stu = #{target_stu}
+    order by id  DESC limit #{start},10
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from my_information
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByStuId" >
+    delete from my_information
+    where target_stu = #{target_stu}
+  </delete>
+  <insert id="insert" parameterType="com.cn.wx.pojo.Information" >
+    insert into my_information (id, target_stu, from_stu, 
+      news_id, praise, comment_id, 
+      reply_id, create_time)
+    values (#{id,jdbcType=INTEGER}, #{targetStu,jdbcType=VARCHAR}, #{fromStu,jdbcType=VARCHAR}, 
+      #{newsId,jdbcType=INTEGER}, #{praise,jdbcType=BIT}, #{commentId,jdbcType=INTEGER}, 
+      #{replyId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.wx.pojo.Information" >
+    insert into my_information
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="targetStu != null" >
+        target_stu,
+      </if>
+      <if test="fromStu != null" >
+        from_stu,
+      </if>
+      <if test="newsId != null" >
+        news_id,
+      </if>
+      <if test="praise != null" >
+        praise,
+      </if>
+      <if test="commentId != null" >
+        comment_id,
+      </if>
+      <if test="replyId != null" >
+        reply_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="targetStu != null" >
+        #{targetStu,jdbcType=VARCHAR},
+      </if>
+      <if test="fromStu != null" >
+        #{fromStu,jdbcType=VARCHAR},
+      </if>
+      <if test="newsId != null" >
+        #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="praise != null" >
+        #{praise,jdbcType=BIT},
+      </if>
+      <if test="commentId != null" >
+        #{commentId,jdbcType=INTEGER},
+      </if>
+      <if test="replyId != null" >
+        #{replyId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.wx.pojo.Information" >
+    update my_information
+    <set >
+      <if test="targetStu != null" >
+        target_stu = #{targetStu,jdbcType=VARCHAR},
+      </if>
+      <if test="fromStu != null" >
+        from_stu = #{fromStu,jdbcType=VARCHAR},
+      </if>
+      <if test="newsId != null" >
+        news_id = #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="praise != null" >
+        praise = #{praise,jdbcType=BIT},
+      </if>
+      <if test="commentId != null" >
+        comment_id = #{commentId,jdbcType=INTEGER},
+      </if>
+      <if test="replyId != null" >
+        reply_id = #{replyId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.wx.pojo.Information" >
+    update my_information
+    set target_stu = #{targetStu,jdbcType=VARCHAR},
+      from_stu = #{fromStu,jdbcType=VARCHAR},
+      news_id = #{newsId,jdbcType=INTEGER},
+      praise = #{praise,jdbcType=BIT},
+      comment_id = #{commentId,jdbcType=INTEGER},
+      reply_id = #{replyId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,57 +1,62 @@
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\pojo\Kebiao.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\impl\PraiseServiceImpl.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\controller\CommentController.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\controller\KeywordController.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\controller\GetBackData.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\dao\KebiaoMapper.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\pojo\Xiaolis.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\controller\ReplyController.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\dao\StudentMapper.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\dao\XiaolisMapper.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\dao\CommentMapper.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\impl\GradeServiceImpl.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\impl\KeywordServiceImpl.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\dao\ReplyMapper.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\pojo\Reply.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\IGradeService.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\pojo\Grade.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\IXiaoliService.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\dao\PraiseMapper.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\pojo\Keywords.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\controller\GoodsController.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\pojo\Praise.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\impl\KebiaoServiceImpl.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\impl\ReplyServiceImpl.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\IKeywordService.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\impl\XiaoliServiceImpl.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\controller\GradeController.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\controller\StudentController.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\interceptor\LoginInterceptor.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\impl\UserfeedbackServiceImpl.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\controller\GetRequestJsonUtils.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\IKebiaoService.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\controller\UserfeedbackController.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\controller\KebiaoController.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\dao\NewsMapper.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\pojo\GradeKey.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\pojo\Userfeedback.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\controller\XiaolisController.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\IUserfeedbackService.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\IReplyService.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\impl\StudentServiceImpl.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\pojo\News.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\dao\UserfeedbackMapper.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\controller\NewsController.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\pojo\KebiaoKey.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\controller\GetData.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\pojo\Comment.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\IPraiseService.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\IStudentService.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\impl\CommentServiceImpl.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\pojo\Student.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\impl\NewsServiceImpl.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\dao\GradeMapper.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\INewsService.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\controller\PraiseController.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\dao\KeywordsMapper.java
-Q:\Users\wxapp\git\lany\src\main\java\com\cn\wx\service\ICommentService.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\controller\KeywordController.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\controller\PraiseController.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\pojo\GradeKey.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\pojo\Reply.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\INewsService.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\controller\GoodsController.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\pojo\Kebiao.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\impl\InformationServiceImpl.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\ICommentService.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\IReplyService.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\controller\InformationController.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\pojo\Student.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\pojo\News.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\interceptor\LoginInterceptor.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\pojo\Keywords.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\dao\ReplyMapper.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\impl\KebiaoServiceImpl.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\controller\GradeController.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\controller\ReplyController.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\impl\KeywordServiceImpl.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\pojo\Xiaolis.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\dao\UserfeedbackMapper.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\IPraiseService.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\controller\XiaolisController.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\impl\NewsServiceImpl.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\dao\CommentMapper.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\impl\StudentServiceImpl.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\dao\StudentMapper.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\dao\XiaolisMapper.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\IStudentService.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\dao\PraiseMapper.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\IUserfeedbackService.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\IKebiaoService.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\IInformationService.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\controller\StudentController.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\IXiaoliService.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\controller\KebiaoController.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\dao\KeywordsMapper.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\controller\GetRequestJsonUtils.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\impl\ReplyServiceImpl.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\controller\NewsController.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\impl\GradeServiceImpl.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\pojo\Userfeedback.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\controller\UserfeedbackController.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\pojo\Praise.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\impl\XiaoliServiceImpl.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\dao\GradeMapper.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\pojo\Grade.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\controller\GetBackData.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\impl\CommentServiceImpl.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\impl\UserfeedbackServiceImpl.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\dao\KebiaoMapper.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\pojo\Information.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\dao\NewsMapper.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\IGradeService.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\impl\PraiseServiceImpl.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\dao\InformationMapper.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\controller\GetData.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\pojo\KebiaoKey.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\service\IKeywordService.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\controller\CommentController.java
+C:\Users\Aqzh\Workspaces\MyEclipse 2016 CI\lany\src\main\java\com\cn\wx\pojo\Comment.java
