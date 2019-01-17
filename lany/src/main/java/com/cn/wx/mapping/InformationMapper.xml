@@ -20,6 +20,12 @@
     from my_information
     where id = #{id,jdbcType=INTEGER}
   </select>
+   <select id="selectByPraise" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from my_information
+    where from_stu = #{from_stu} and news_id = #{news_id} and praise = #{praise}
+  </select>
   <select id="selectByStuid" resultMap="BaseResultMap"  >
     select 
     <include refid="Base_Column_List" />

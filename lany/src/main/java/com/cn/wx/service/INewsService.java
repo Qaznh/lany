@@ -24,4 +24,6 @@ public interface INewsService {
 	public List<News> getNewsByKeyword(String keyword,int start);
 	
 	public List<News> getNewsByStuid(String stuId,int start);
+	
+	public int delNewsById(int newsId);
 }

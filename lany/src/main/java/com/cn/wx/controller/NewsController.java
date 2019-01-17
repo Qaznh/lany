@@ -366,5 +366,16 @@ public class NewsController {
     	return ns;
     }
 
-    
+    @RequestMapping(value={"/delNews"})
+    @ResponseBody
+    public Object delNewsByid(HttpServletRequest request,HttpServletResponse response)
+			 throws ServletException, IOException{
+    	JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
+    	int news_id = json.getIntValue("news_id");
+    	int tag = newsService.delNewsById(news_id);
+    	if(tag==1){
+    	    return true;
+    	}else
+    		return false;
+    }
 }

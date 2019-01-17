@@ -12,4 +12,8 @@ public interface IInformationService {
 	public Information getInformation(int id);
 	
 	public List<Information> getInformation(int start,String target_stu);
+	
+	public Information getInformationPraise(String fromStu,int newsId,boolean praise);
+	
+	public int delInformation(int id);
 }

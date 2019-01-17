@@ -59,4 +59,8 @@ public class NewsServiceImpl implements INewsService{
 	public List<News> getNewsByStuid(String stuId,int start){
 		return this.newsDao.selectByStuid(stuId,start);
 	}
+	
+	public int delNewsById(int newsId){
+		return this.newsDao.deleteByPrimaryKey(newsId);
+	}
 }

@@ -24,6 +24,14 @@
     from news_comment
     where comment_id = #{commentId,jdbcType=INTEGER}
   </select>
+    <select id="selectId" resultMap="ResultMapWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from news_comment
+    where stu_id = #{stuId} and news_id = #{news_id} and create_time = #{create_time}
+  </select>
   <select id="selectByPage" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select
     <include refid="Base_Column_List" />

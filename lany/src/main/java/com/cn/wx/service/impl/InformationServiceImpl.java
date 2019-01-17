@@ -36,4 +36,12 @@ public class InformationServiceImpl implements IInformationService{
 	public List<Information> getInformation(int start,String target_stu){
 		return this.informationDao.selectByStuid(start,target_stu);
 	}
+	
+	public Information getInformationPraise(String fromStu,int newsId,boolean praise){
+		return this.informationDao.selectByPraise(fromStu, newsId, praise);
+	}
+	
+	public int delInformation(int id){
+		return this.informationDao.deleteByPrimaryKey(id);
+	}
 }

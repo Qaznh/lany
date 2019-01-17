@@ -51,7 +51,7 @@ public class InformationController {
 	
 	@RequestMapping(value={"/showinfm"},method=RequestMethod.POST)
 	@ResponseBody
-	public Object showComt(HttpServletRequest request,HttpServletResponse response)
+	public Object showInfm(HttpServletRequest request,HttpServletResponse response)
 			 throws ServletException, IOException{
 		JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
 		int start = (json.getIntValue("page")*10);
@@ -70,22 +70,28 @@ public class InformationController {
     		JSONObject jscom = new JSONObject(); 
     		if(informa.getCommentId()!=0){
     			Comment com = commentService.getCommentById(informa.getCommentId());
+    			if(com!=null){
     			jscom.put("detail_comment", com.getCommentCont());
+    			}
     		}
     		json1.put("comment", jscom);
     		
     		JSONObject jsrep = new JSONObject();
     		if(informa.getReplyId()!=0){
     			Reply rep = replyService.getReplyById(informa.getReplyId());
+    			if(rep!=null){
     			jsrep.put("detail_reply", rep.getReplyCont());
+    			}
     		}
     		json1.put("reply", jsrep);
     		
     		JSONObject jsnews = new JSONObject();
     		if(informa.getNewsId()!=0){
     			News ns = newsService.getNewsById(informa.getNewsId());
+    			if(ns!=null){
     			jsnews.put("news_cont", ns.getNewsCont());
     			jsnews.put("img", ns.getNewsImg());
+    			}
     		}
     		json1.put("news", jsnews);
     		
@@ -97,4 +103,17 @@ public class InformationController {
 		return inform;
 		
 	}
+	
+    @RequestMapping(value={"/delinfor"})
+    @ResponseBody
+    public Object delInfomaByid(HttpServletRequest request,HttpServletResponse response)
+			 throws ServletException, IOException{
+    	JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
+    	int id = json.getIntValue("id");
+    	int tag = informationService.delInformation(id);
+    	if(tag==1){
+    	    return true;
+    	}else
+    		return false;
+    }
 }

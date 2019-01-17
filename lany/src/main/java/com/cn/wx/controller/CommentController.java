@@ -24,6 +24,7 @@ import com.cn.wx.pojo.News;
 import com.cn.wx.pojo.Reply;
 import com.cn.wx.pojo.Student;
 import com.cn.wx.service.ICommentService;
+import com.cn.wx.service.IInformationService;
 import com.cn.wx.service.INewsService;
 import com.cn.wx.service.IReplyService;
 import com.cn.wx.service.IStudentService;
@@ -44,6 +45,9 @@ public class CommentController {
 	
 	@Resource  
     private IStudentService studentService;
+	
+	@Resource
+	private IInformationService informationService;
 	
 	@RequestMapping(value={"/showComt"},method=RequestMethod.POST)
 	@ResponseBody
@@ -171,6 +175,7 @@ public class CommentController {
 		String stuId = json1.getString("stuId");
 		String token = json1.getString("token");
 		Student st = studentService.getStudentById(stuId);
+		System.out.println(json1);
 		if(!token.equals(st.getToken())){
 			JSONObject js = new JSONObject();
 			js.put("token_state", false);
@@ -181,7 +186,13 @@ public class CommentController {
 		//System.out.println(newsId);
 		String comcont = json1.getString("comcont");
 		Timestamp datetime = new Timestamp(System.currentTimeMillis());
-		int tag = commentService.putComment(newsId, stuId, comcont, datetime);
+		String sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(datetime);
+		Timestamp ts = new Timestamp(System.currentTimeMillis());
+		ts = Timestamp.valueOf(sdf1);
+		int tag = commentService.putComment(newsId, stuId, comcont, ts);
+		System.out.println(ts);
+		System.out.println(sdf1);
+
 		//System.out.println(tag);
 		if(tag==1)
 		{
@@ -191,10 +202,29 @@ public class CommentController {
 	    	news.setCommentNum(comment_num);
 	    	newsService.addNewsCmNum(news);
 			//System.out.println(tag2);
+	    	Comment ctm = commentService.getCommentId(stuId, newsId, sdf1);
+	    	int tm = ctm.getCommentId();
+	    	informationService.putInformation(news.getStuId(), stuId, newsId, false, tm, 0, ts);
 			return true;
 			}
 		else
 			return false;
 	  }
 	}
+	
+	@RequestMapping(value={"/delComt"})
+    @ResponseBody
+    public Object delCommentByid(HttpServletRequest request,HttpServletResponse response)
+			 throws ServletException, IOException{
+    	JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
+    	int comment_id = json.getIntValue("comment_id");
+    	int tag = commentService.delCommentById(comment_id);
+    	if(tag==1){
+    		return true;
+    	}else
+    	{
+    		return false;
+    	}
+	}
+	
 }

@@ -14,6 +14,8 @@ public interface InformationMapper {
     int insertSelective(Information record);
 
     Information selectByPrimaryKey(Integer id);
+    
+    Information selectByPraise(@Param("from_stu")String from_stu,@Param("news_id")int news_id,@Param("praise")boolean praise);
 
     int updateByPrimaryKeySelective(Information record);
 

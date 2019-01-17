@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cn.wx.pojo.Information;
 import com.cn.wx.pojo.News;
 import com.cn.wx.pojo.Student;
 import com.cn.wx.service.IInformationService;
@@ -65,7 +66,10 @@ public class PraiseController {
     		   news.setPraiseNum(praise_num);
     		   newsService.addNewsPsNum(news);
     		   //System.out.println(tag2);
+    		  Information inft = informationService.getInformationPraise(stuId, newsId, true);
+    		  if(inft==null){
     		  informationService.putInformation(news.getStuId(), stuId, newsId, true, 0, 0, datetime);
+    		  }
     	    }
     	  }
     	    else

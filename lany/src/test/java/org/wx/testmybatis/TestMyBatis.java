@@ -190,16 +190,24 @@ public class TestMyBatis {
     	List<Information> infm = informationService.getInformation(start, targetStu);
     	*/
     	
-    	Praise  pr = praiseService.getpraiseById(15);
-    	Date datetime = pr.getCrawlTime();
-    	String stuid = "1614080903221";
-    	int newsid = 11;
-        Praise b = praiseService.getPraiseId(stuid, newsid, datetime);
     	
-        logger.info(b);
+    	/*
+    	Reply  rep = replyService.getReplyById(3);
+    	Date datetime = rep.getCreateTime();
+    	String stuid = "1614080903223";
+    	int commentid = 15;
+        Reply b = replyService.getReplyId(stuid, commentid, datetime);
+    	*/
+    	
+    	String fromStu = "1614080903221";
+    	int newsId = 1;
+    	boolean praise = false;
+    	Information inf = informationService.getInformationPraise(fromStu, newsId, praise);
+    	
+        logger.info(inf);
         // System.out.println(user.getUserName());  
         // logger.info("Öµ£º"+user.getUserName());  
-        logger.info(JSON.toJSONString(b));
+        logger.info(JSON.toJSONString(inf));
         
     } 
 }

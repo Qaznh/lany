@@ -35,5 +35,13 @@ public class ReplyServiceImpl implements IReplyService{
 	public List<Reply> getReplyByComtId(int commentId){
 		return this.replyDao.selectByComtId(commentId);
 	}
+	
+	public Reply getReplyId(String from_stuid,int comment_id,String datetime){
+		return this.replyDao.selectId(from_stuid, comment_id, datetime);
+	}
+	
+	public int delReplyById(int replyId){
+		return this.replyDao.deleteByPrimaryKey(replyId);
+	}
 
 }

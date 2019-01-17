@@ -14,6 +14,8 @@ public interface CommentMapper {
     int insertSelective(Comment record);
 
     Comment selectByPrimaryKey(Integer commentId);
+    
+    Comment selectId(@Param("stuId")String stu_id,@Param("news_id")int news_id,@Param("create_time")String create_time);
 
     int updateByPrimaryKeySelective(Comment record);
 
