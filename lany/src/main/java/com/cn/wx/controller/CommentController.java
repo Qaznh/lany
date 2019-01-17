@@ -55,7 +55,7 @@ public class CommentController {
 			 throws ServletException, IOException{
 		JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
 		int start = (json.getIntValue("page")*6);
-		int newsid = json.getIntValue("news_id");;
+		int newsid = json.getIntValue("news_id");
 		List<Comment> comt = commentService.getCommentByPage(start, newsid);
     	List<JSONObject> ns= new ArrayList<JSONObject>();
     	for(int i=0;i<comt.size();i++){
@@ -175,7 +175,7 @@ public class CommentController {
 		String stuId = json1.getString("stuId");
 		String token = json1.getString("token");
 		Student st = studentService.getStudentById(stuId);
-		System.out.println(json1);
+		//System.out.println(json1);
 		if(!token.equals(st.getToken())){
 			JSONObject js = new JSONObject();
 			js.put("token_state", false);
@@ -190,8 +190,8 @@ public class CommentController {
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 		ts = Timestamp.valueOf(sdf1);
 		int tag = commentService.putComment(newsId, stuId, comcont, ts);
-		System.out.println(ts);
-		System.out.println(sdf1);
+		//System.out.println(ts);
+		//System.out.println(sdf1);
 
 		//System.out.println(tag);
 		if(tag==1)

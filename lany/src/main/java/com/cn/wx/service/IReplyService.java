@@ -1,7 +1,6 @@
 package com.cn.wx.service;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 import com.cn.wx.pojo.Reply;

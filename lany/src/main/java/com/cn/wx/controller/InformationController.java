@@ -65,36 +65,56 @@ public class InformationController {
 			json1.put("from_stu", stu.getStuName());
     		json1.put("icon_url", stu.getIconUrl());
     		json1.put("id", informa.getId());
+    		
+    		if(informa.getPraise()==true){
     		json1.put("praise", informa.getPraise());
-    		
-    		JSONObject jscom = new JSONObject(); 
-    		if(informa.getCommentId()!=0){
-    			Comment com = commentService.getCommentById(informa.getCommentId());
-    			if(com!=null){
-    			jscom.put("detail_comment", com.getCommentCont());
-    			}
-    		}
-    		json1.put("comment", jscom);
-    		
-    		JSONObject jsrep = new JSONObject();
-    		if(informa.getReplyId()!=0){
-    			Reply rep = replyService.getReplyById(informa.getReplyId());
-    			if(rep!=null){
-    			jsrep.put("detail_reply", rep.getReplyCont());
-    			}
-    		}
-    		json1.put("reply", jsrep);
-    		
     		JSONObject jsnews = new JSONObject();
     		if(informa.getNewsId()!=0){
     			News ns = newsService.getNewsById(informa.getNewsId());
     			if(ns!=null){
-    			jsnews.put("news_cont", ns.getNewsCont());
+    			jsnews.put("news_id", ns.getNewsId());
+    			jsnews.put("info_cont", ns.getNewsCont());
     			jsnews.put("img", ns.getNewsImg());
     			}
+    		   }
+    		 json1.put("cont", jsnews);
     		}
-    		json1.put("news", jsnews);
     		
+    		else{
+    			json1.put("praise",informa.getPraise());
+        		if(informa.getNewsId()!=0){
+        			JSONObject jsnews1 = new JSONObject();
+        			News ns = newsService.getNewsById(informa.getNewsId());
+        			if(ns!=null){
+        			jsnews1.put("news_id", ns.getNewsId());
+        			jsnews1.put("info_cont", ns.getNewsCont());
+        			jsnews1.put("img", ns.getNewsImg());
+        			}
+        		  json1.put("cont", jsnews1);
+        		  
+         			Comment com = commentService.getCommentById(informa.getCommentId());
+         			if(com!=null){
+         			json1.put("detail_cont", com.getCommentCont());
+         			}
+        		 
+    		}
+        		else{ 
+            			JSONObject jscom = new JSONObject();
+            			Comment com = commentService.getCommentById(informa.getCommentId());
+            			if(com!=null){
+            			jscom.put("news_id", com.getNewsId());
+            			jscom.put("info_cont",com.getCommentCont());
+            			jscom.put("img", null);
+            			}
+            		json1.put("cont", jscom);
+            	
+            		    Reply rep = replyService.getReplyById(informa.getReplyId());
+            			if(rep!=null){
+            			json1.put("detail_cont", rep.getReplyCont());
+            			}
+            		}
+        		}
+	
         	Date d = informa.getCreateTime();
         	String sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(d);
         	json1.put("create_time", sdf);
@@ -111,6 +131,19 @@ public class InformationController {
     	JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
     	int id = json.getIntValue("id");
     	int tag = informationService.delInformation(id);
+    	if(tag==1){
+    	    return true;
+    	}else
+    		return false;
+    }
+    
+    @RequestMapping(value={"/delinfall"})
+    @ResponseBody
+    public Object delInfomaByStu(HttpServletRequest request,HttpServletResponse response)
+			 throws ServletException, IOException{
+    	JSONObject json = GetRequestJsonUtils.getRequestJsonObject(request);
+    	String stuId = json.getString("stu_id");
+    	int tag = informationService.delInformaBySi(stuId);
     	if(tag==1){
     	    return true;
     	}else

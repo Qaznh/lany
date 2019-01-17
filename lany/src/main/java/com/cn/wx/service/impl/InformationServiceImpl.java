@@ -44,4 +44,8 @@ public class InformationServiceImpl implements IInformationService{
 	public int delInformation(int id){
 		return this.informationDao.deleteByPrimaryKey(id);
 	}
+	
+	public int delInformaBySi(String target_stu){
+		return this.informationDao.deleteByStuId(target_stu);
+	}
 }

@@ -37,6 +37,10 @@
     delete from my_information
     where id = #{id,jdbcType=INTEGER}
   </delete>
+    <delete id="deleteByStuId" >
+    delete from my_information
+    where target_stu = #{target_stu}
+  </delete>
   <insert id="insert" parameterType="com.cn.wx.pojo.Information" >
     insert into my_information (id, target_stu, from_stu, 
       news_id, praise, comment_id, 

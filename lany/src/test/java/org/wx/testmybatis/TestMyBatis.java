@@ -198,16 +198,18 @@ public class TestMyBatis {
     	int commentid = 15;
         Reply b = replyService.getReplyId(stuid, commentid, datetime);
     	*/
-    	
+    	/*
     	String fromStu = "1614080903221";
     	int newsId = 1;
     	boolean praise = false;
     	Information inf = informationService.getInformationPraise(fromStu, newsId, praise);
+    	*/
+    	int a = informationService.delInformaBySi("1614080903203");
     	
-        logger.info(inf);
+        logger.info(a);
         // System.out.println(user.getUserName());  
         // logger.info("Öµ£º"+user.getUserName());  
-        logger.info(JSON.toJSONString(inf));
+        logger.info(JSON.toJSONString(a));
         
     } 
 }

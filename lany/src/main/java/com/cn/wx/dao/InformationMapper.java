@@ -8,6 +8,8 @@ import com.cn.wx.pojo.Information;
 
 public interface InformationMapper {
     int deleteByPrimaryKey(Integer id);
+    
+    int deleteByStuId(@Param("target_stu")String target_stu);
 
     int insert(Information record);
 

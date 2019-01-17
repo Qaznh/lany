@@ -16,4 +16,6 @@ public interface IInformationService {
 	public Information getInformationPraise(String fromStu,int newsId,boolean praise);
 	
 	public int delInformation(int id);
+	
+	public int delInformaBySi(String target_stu);
 }
